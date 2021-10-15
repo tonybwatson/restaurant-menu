@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import 'bootstrap/dist/css/bootstrap.css'
 import Menu from './Menu'
 
 class App extends Component {
@@ -12,10 +11,6 @@ class App extends Component {
             dinnerItems: [],
             drinkItems: [],
         }
-    }
-
-    getPrice( min, max) {
-        return ((Math.random() * (20)).toFixed(2))
     }
 
     componentDidMount() {
@@ -38,15 +33,16 @@ class App extends Component {
                     this.setState({
                         [array]: response.data,
                     })
-                } 
+                }
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
-            .then(function () {
+    }
 
-            });
+    getPrice() {
+        return (Math.random() * (20 - 5) + 5).toFixed(2)
     }
 
     render() {
@@ -61,32 +57,62 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="container">
-                        <div className="row text-center pt-4">
-                            <h2>Dinner Menu</h2>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                {/* map over items here from this.state.(whatever you call it) */}
-                                {this.state.dinnerItems.map((item) => <Menu name={item.name} 
-                                description={item.description} 
-                                price={`$`+this.getPrice()} 
-                                key={item.id} />
-                                )}
-                            </div>
-                        </div>
-                        <div className="row text-center pt-4"><h2>Drinks</h2>
-                            <div className="col">
-                                {this.state.drinkItems.map((item) => <Menu name={item.name} 
-                                description={item.description} 
-                                price={`$`+this.getPrice()} 
-                                key={item.id} />
-                                )}
-                            </div>
-                            <div className="container pt-4 w-100">
-                                <div className="row bg-light">
-                                    <span className="text-muted ">© Tony Watson 2021</span>
+                        <ul class="nav nav-pills m-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active"
+                                    id="pills-home-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-home"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="pills-home"
+                                    aria-selected="true">
+                                    Dinner
+                                    </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link"
+                                    id="pills-profile-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-profile"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="pills-profile"
+                                    aria-selected="false">
+                                    Drinks
+                                    </button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <div className="row text-center pt-4">
+                                    <h2>Dinner Menu</h2>
+                                    <div className="col">
+                                        {this.state.dinnerItems.map((item) => <Menu name={item.name}
+                                            description={item.description}
+                                            price={`$` + this.getPrice()}
+                                            key={item.id} />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                <div className="row text-center pt-4">
+                                    <h2>Drinks</h2>
+                                    <div className="col">
+                                        {this.state.drinkItems.map((item) => <Menu name={item.name}
+                                            description={item.description}
+                                            price={`$` + this.getPrice()}
+                                            key={item.id} />
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="container pt-4 w-100">
+                        <div className="row bg-light text-center">
+                            <span className="text-muted ">© Tony Watson 2021</span>
                         </div>
                     </div>
                 </div>
