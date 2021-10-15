@@ -50,7 +50,7 @@ class App extends Component {
             <>
                 <div className="container bg-info">
                     <div className="row d-flex justify-content-center">
-                        <em><h1 className="row pt-4 d-flex justify-content-center fw-bold text-decoration-underline">The Awesome Cafe</h1></em>
+                        <em><h1 className="row pt-4 d-flex justify-content-center fw-bold text-decoration-underline">Tony's Cafe</h1></em>
                         <div className="container text-muted">
                             <h5 className="row d-flex justify-content-center">348 E Main St, Lexington KY </h5>
                             <h5 className="row d-flex justify-content-center">Open daily 10am-8pm</h5>
